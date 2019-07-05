@@ -275,6 +275,7 @@ console.log("+++++====== Let & Const ======+++++");
 if(false){
     var example = 5;
 }
+console.log('1. ');
 console.log(example);
 //This outputs null/undefined instead of an error because the interpreter sees this code as following:
 
@@ -306,24 +307,24 @@ console.log(example);
 //#So basically in case of an object/array, you can modify the values but can not change the datatype.
 
 const constPrem = 5;
-console.log(`1. contPrem is ${constPrem}`);
+console.log(`2. contPrem is ${constPrem}`);
 
 //constPrem = 10; //Invalid operation, will raise an error.
 
 const constArr = [3,6,4,7];
-console.log(`2. contArr is ${constArr}`);
+console.log(`3. contArr is ${constArr}`);
 
 constArr.push(4); //Valid as it is an array operation.
-console.log(`3. contArr is ${constArr}`);
+console.log(`4. contArr is ${constArr}`);
 
 //constArr = 8; //Will raise an error as we can not change the datatype of a constant array.
 
 const constObj = {};
-console.log('4. constObj is');
+console.log('5. constObj is');
     console.log(constObj);
 
 constObj.firstName = 'John'; //Valid addition to the properties of the constant object.
-console.log('5. constObj is');
+console.log('6. constObj is');
     console.log(constObj);
 
 //constObj = []; //Will raise an error as we can not change the datatype of a constant object.
