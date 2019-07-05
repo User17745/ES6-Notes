@@ -212,15 +212,17 @@ add2(1,3,5,6,3);
 console.log("+++++====== Default Params ======+++++");
 
 //Conventional method to write this sort of a function did not use to provide a way for us to provide default parameter.
-// function add(numArray){
-//     let total = 0;
-//     numArray.forEach((element) => {
-//         total += element;
-//     });
+/*
+    function add(numArray){
+        let total = 0;
+        numArray.forEach((element) => {
+            total += element;
+        });
 
-//     console.log(`1. The total is ${total}`);
-// }
-// add();
+        console.log(`1. The total is ${total}`);
+    }
+    add();
+*/
 //Note that this will raise an error- "Uncaught TypeError: Cannot read property 'forEach' of undefined" as we have not passed any array in the function call.
 
 //With the help of default params
@@ -259,3 +261,79 @@ if(numArray.includes(toFind))
 else
     console.log(`2. ${toFind} is NOT included inside the array.`)
 
+
+
+/**
+ * ----let & const----
+ * #When we call an uninitialized var in the code, we don't get an error, instead we get a null/undefined.
+ * #This is due to variable hoisting in javascript, where JS hoists the vars on the function scope level.
+ * #It is not supported by Internet Explorer.
+ */
+console.log("+++++====== Let & Const ======+++++");
+
+//Using var
+if(false){
+    var example = 5;
+}
+console.log(example);
+//This outputs null/undefined instead of an error because the interpreter sees this code as following:
+
+/*
+    var example; //See that the variable is pre-initialized outside of it's block.
+
+    if(false){
+        example = 5;
+    }
+    console.log(example);
+*/
+
+//------Using let
+// #let is stricter version of var which uses block scope.
+/*
+    if(false){
+        let num = 5;
+    }
+    console.log(num);
+*/
+//Will give us an error- "Uncaught ReferenceError: num is not defined"
+//We should mostly always use let instead of var especially when the values are supposed to be reassignable for the variable.
+
+//------Using const
+//#Const sets the variable as a read-only.
+//#In case of primitive types (int, boolean, string), you can not change the value once it is assigned.
+//#In case of an array, you can carry array operations (pop, push) but can not change it into a primitive type or an object.
+//#In case of an object, you can add properties but can not change it into a primitive type or an array.
+//#So basically in case of an object/array, you can modify the values but can not change the datatype.
+
+const constPrem = 5;
+console.log(`1. contPrem is ${constPrem}`);
+
+//constPrem = 10; //Invalid operation, will raise an error.
+
+const constArr = [3,6,4,7];
+console.log(`2. contArr is ${constArr}`);
+
+constArr.push(4); //Valid as it is an array operation.
+console.log(`3. contArr is ${constArr}`);
+
+//constArr = 8; //Will raise an error as we can not change the datatype of a constant array.
+
+const constObj = {};
+console.log('4. constObj is');
+    console.log(constObj);
+
+constObj.firstName = 'John'; //Valid addition to the properties of the constant object.
+console.log('5. constObj is');
+    console.log(constObj);
+
+//constObj = []; //Will raise an error as we can not change the datatype of a constant object.
+
+
+
+/**
+ * ----Import & Export----
+ * #Allows to do dependency injections.
+ * #Introduces more Object Oriented Programming.
+ * #Allows the code to be more modular.
+ */
+console.log("+++++====== Let & Const ======+++++");
