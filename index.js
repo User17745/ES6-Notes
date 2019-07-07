@@ -336,5 +336,109 @@ console.log('6. constObj is');
  * #Allows to do dependency injections.
  * #Introduces more Object Oriented Programming.
  * #Allows the code to be more modular.
+ * 
+ * Note: See export.js file
  */
-console.log("+++++====== Let & Const ======+++++");
+console.log("+++++====== Import & Export ======+++++");
+
+//---------Import
+// In order for import/export to work, we have to run the file from a server (WAMP,LAMP, etc.) otherwise the CROS policy will prevent the linking of the two files.
+// i.e., simplify opening the file in the browser from the file manager will not work and will get out an error.
+
+// import <{ <identifier 1>, [identifier 2], [identifier 3] }> from <'src_path'>;
+import { data } from './export.js';
+
+let updatedData = data; //Passed as reference
+
+updatedData.push(5);
+data.push(9);
+
+console.log(`1. ${updatedData}`);
+console.log(`2. ${data}`);
+
+
+
+/**
+ * ----padStart() & padEnd()----
+ * #padStart() - Gives us the ability to add values to the START of a string.
+ * #padEnd() - Gives us the ability to add values to the END of a string.
+ * #Depends on long the string is.
+ */
+console.log("+++++====== padStart() & padEnd() ======+++++");
+
+let string1 = 'John';
+let string2 = 'John Doe';
+
+// <stringIdentifier>.padStart(<max_stringLength_after_concatenation>, ['substring'])
+// <stringIdentifier>.padEnd(<max_stringLength_after_concatenation>, ['substring'])
+
+console.log(`1. ${string1.padStart(10, 'ab')}`);
+console.log(`2. ${string2.padEnd(10, 'a')}`);
+
+
+
+/**
+ * ----Classes----
+ * #Like Classes in Java
+ * #Added more Object Oriented Programing possibilities.
+ */
+console.log("+++++====== Classes ======+++++");
+
+import { Animal } from './export.js'
+
+let cat = new Animal();
+console.log('1. ');
+console.log(cat);
+
+let dog = new Animal('Groud', 4);
+console.log('2. ');
+console.log(dog); //Print whole object
+console.log(`3. The dog is a ${dog.type} type animal.`); //Print a property of the object.
+
+dog.legs = 5; //Chaning the values
+console.log(`4. My dog has ${dog.legs} legs (*￣o￣)╭.`);
+
+console.log('5. ');
+cat.makeNoise();
+
+console.log('6. ');
+dog.makeNoise('woof!');
+
+console.log('---Static---');
+console.log('7. ');
+Animal.makeANoise(); //Use the class name directly without the use of an object.
+
+console.log('---Get Method---');
+console.log('8. ');
+console.log(dog.metaData); //We call get method without putting brackets '()'
+
+console.log('---Inheritance---');
+import { Cat } from './export.js';
+//We could have also done import { Animal, Cat } from './export.js'; to began with.
+
+//Calling overridden method of the class.
+let cat2 = new Cat('Ground', 4);
+console.log('9. ');
+cat2.makeNoise();
+
+//Calling an inherited method of the class, a get method in this case.
+console.log('10. ');
+console.log(cat2.metaData);
+
+
+
+/**
+ * ----Trailing Commas----
+ * #With ES6, it is a non issue if you leave out commas at the end of the line without specifying an identifier after it.
+ * #This would have raised an error in JS before ES6.
+ */
+console.log("+++++====== Trailing Commas ======+++++");
+
+function tCommas(param1,){ //We left a common without specifying the next formal parameter.
+    const tCom = {
+        firstName: 'John', //Here we are leaving a comma in an object without putting-in the property.
+    }
+    console.log(tCom);
+}
+
+tCommas();
