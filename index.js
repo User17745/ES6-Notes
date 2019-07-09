@@ -442,3 +442,114 @@ function tCommas(param1,){ //We left a common without specifying the next formal
 }
 
 tCommas();
+
+
+
+/**
+ * ----Sets----
+ * #Sets allow us to create a unique list.
+ * #Outputting the set only shows the unique values contained within the set.
+ * #Checking the size of the site reports the number of unique values in it.
+ * #sets are iterable i.e., we can use all type of loops to parse through it.
+ */
+console.log("+++++====== Sets ======+++++");
+
+// new Set([ [value1], [value2], [value3], [value4],.... ]);
+const exampleSet = new Set([1,1,2,2,2,3]); //6 values in total but only 3 unique values.
+
+console.log("1.1. ");
+console.log(exampleSet);
+console.log("1.2. ");
+console.log(exampleSet.size); //".size" returns the size of the set.
+
+//We can add more values using ".add()"
+exampleSet.add(5);
+console.log("2.1. ");
+console.log(exampleSet);
+console.log("2.2. ");
+console.log(exampleSet.size);
+exampleSet.add(4).add(8).add(2);
+console.log("2.3. ");
+console.log(exampleSet);
+console.log("2.4. ");
+console.log(exampleSet.size);
+
+//We can delete a particular value from set using ".delete()"
+//"delete()" return true if the operation was successfully(if the value was contained within the set) and vice-versa
+console.log("3.1. " + exampleSet.delete(5));
+console.log("3.2. ");
+console.log(exampleSet);
+console.log("3.3. ");
+console.log(exampleSet.size);
+
+//We can check if a value exists in the set using ".has()" which returns a boolean.
+console.log("4. " + exampleSet.has(5));
+
+//We can clear an entire set using ".clear()"
+exampleSet.clear();
+console.log("5.1. ");
+console.log(exampleSet);
+console.log("5.2. ");
+console.log(exampleSet.size);
+
+/**
+ * ----Async & Wait----
+ * #With ES6, async and wait operations can be written very fast with small code.
+ */
+console.log("+++++====== Async & Wait ======+++++");
+
+const apiURL = 'https://api.github.com/users';
+
+//----Using Promises
+//Making an asynchronous AJAX call which will fetch us some data.
+function getUsers1(){
+    fetch(apiURL) //"fetch" takes a URL and gets the data(response) which is called a "promise" 
+        .then((response) => response.json()) //"then" decides what happens with the response once it is arrived. In this case we are resolving our promise(by converting it into a JSON) as our JS can't process this promise on it's own.
+            .then((json) => { //Here, once we get the promise from the last "then", we can process it further.
+                console.log("1. ");
+                console.log(json[0]);
+            }).catch((error) => {
+                console.log('Data fetching operation failed!');
+            });
+}
+
+getUsers1();
+
+//----Using Async & Wait
+// The "async" keyword marks the function as an asynchronous type
+// async function funcName([param1, param2,....]){}
+async function getUsers2(){
+    //use keyword "await" to make an asynchronous request.
+    const response = await fetch(apiURL);
+    const json = await response.json();
+
+    console.log("2. ");
+    console.log(json[0]);
+}
+
+getUsers2();
+
+//Example 2
+
+//This function emulated a process that may introduce delay and needs asynchronous code to operate with.
+function resolveAfter3Secs(){
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve('Resolved!');
+        }, 3000);
+    });
+}
+
+//Using Promises
+resolveAfter3Secs().then((data) => {
+    console.log("3. " + data);
+});
+
+//Using Async
+async function getAsyncData(){
+    const result = await resolveAfter3Secs();
+    console.log("4. " + result);
+}
+getAsyncData();
+
+
